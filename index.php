@@ -130,7 +130,7 @@ if ($query->rowCount() > 0) {
                                         <h6>
                                             <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?>
                                                 , <?php echo htmlentities($result->VehiclesTitle); ?></a></h6>
-                                        <span class="price">$<?php echo htmlentities($result->PricePerDay); ?>
+                                        <span class="price">₹<?php echo htmlentities($result->PricePerDay); ?>
                                             /Day</span>
                                     </div>
                                     <div class="inventory_info_m">
