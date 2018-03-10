@@ -32,7 +32,7 @@ if (strlen($_SESSION['alogin']) == 0) {
         <meta name="author" content="">
         <meta name="theme-color" content="#3e454c">
 
-        <title>Car Rental Portal | Admin Create Brand</title>
+        <title>Car Rental Portal | Admin Edit Brand</title>
 
         <!-- Font awesome -->
         <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -83,7 +83,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                 <div class="row">
                     <div class="col-md-12">
 
-                        <h2 class="page-title">Create Brand</h2>
+                        <h2 class="page-title">Edit Brand</h2>
 
                         <div class="row">
                             <div class="col-md-10">

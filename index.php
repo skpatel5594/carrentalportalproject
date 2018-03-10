@@ -69,36 +69,40 @@ error_reporting(0);
 </section>
 <!-- /Banners -->
 
-
-<!-- Resent Cat-->
-<section class="section-padding gray-bg">
-    <div class="container">
-        <div class="section-header text-center">
-            <h2>Find the Best <span>CarForYou</span></h2>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-                in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-                are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden
-                in the middle of text.</p>
-        </div>
-        <div class="row">
-
-            <!-- Nav tabs -->
-            <div class="recent-tab">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#resentnewcar" role="tab" data-toggle="tab">New
-                            Car</a></li>
-                </ul>
+<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+$query = $dbh->prepare($sql);
+$query->execute();
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+$cnt = 1;
+if ($query->rowCount() > 0) {
+    ?>
+    <!-- Resent Cat-->
+    <section class="section-padding gray-bg">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Find the Best <span>CarForYou</span></h2>
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration
+                    in some form, by injected humour, or randomised words which don't look even slightly believable. If
+                    you
+                    are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing
+                    hidden
+                    in the middle of text.</p>
             </div>
-            <!-- Recently Listed New Cars -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="resentnewcar">
+            <div class="row">
 
-                    <?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
-                    $query = $dbh->prepare($sql);
-                    $query->execute();
-                    $results = $query->fetchAll(PDO::FETCH_OBJ);
-                    $cnt = 1;
-                    if ($query->rowCount() > 0) {
+                <!-- Nav tabs -->
+                <div class="recent-tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#resentnewcar" role="tab" data-toggle="tab">New
+                                Car</a></li>
+                    </ul>
+                </div>
+                <!-- Recently Listed New Cars -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="resentnewcar">
+
+                        <?php
                         foreach ($results as $result) {
                             ?>
 
@@ -134,14 +138,13 @@ error_reporting(0);
                                     </div>
                                 </div>
                             </div>
-                        <?php }
-                    } ?>
-
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
-        </div>
-</section>
-<!-- /Resent Cat -->
+    </section>
+    <!-- /Resent Cat -->
+<?php } ?>
 
 <!-- Fun Facts-->
 <section class="fun-facts-section">
@@ -186,24 +189,25 @@ error_reporting(0);
 </section>
 <!-- /Fun Facts-->
 
-
-<!--Testimonial -->
-<section class="section-padding testimonial-section parallex-bg">
-    <div class="container div_zindex">
-        <div class="section-header white-text text-center">
-            <h2>Our Satisfied <span>Customers</span></h2>
-        </div>
-        <div class="row">
-            <div id="testimonial-slider">
-                <?php
-                $tid = 1;
-                $sql = "SELECT tbltestimonial.Testimonial,tblusers.FullName from tbltestimonial join tblusers on tbltestimonial.UserEmail=tblusers.EmailId where tbltestimonial.status=:tid";
-                $query = $dbh->prepare($sql);
-                $query->bindParam(':tid', $tid, PDO::PARAM_STR);
-                $query->execute();
-                $results = $query->fetchAll(PDO::FETCH_OBJ);
-                $cnt = 1;
-                if ($query->rowCount() > 0) {
+<?php
+$tid = 1;
+$sql = "SELECT tbltestimonial.Testimonial,tblusers.FullName from tbltestimonial join tblusers on tbltestimonial.UserEmail=tblusers.EmailId where tbltestimonial.status=:tid";
+$query = $dbh->prepare($sql);
+$query->bindParam(':tid', $tid, PDO::PARAM_STR);
+$query->execute();
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+$cnt = 1;
+if ($query->rowCount() > 0) {
+    ?>
+    <!--Testimonial -->
+    <section class="section-padding testimonial-section parallex-bg">
+        <div class="container div_zindex">
+            <div class="section-header white-text text-center">
+                <h2>Our Satisfied <span>Customers</span></h2>
+            </div>
+            <div class="row">
+                <div id="testimonial-slider">
+                    <?php
                     foreach ($results as $result) { ?>
 
 
@@ -216,18 +220,17 @@ error_reporting(0);
                                 </div>
                             </div>
                         </div>
-                    <?php }
-                } ?>
+                    <?php } ?>
 
 
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Dark Overlay-->
-    <div class="dark-overlay"></div>
-</section>
-<!-- /Testimonial-->
-
+        <!-- Dark Overlay-->
+        <div class="dark-overlay"></div>
+    </section>
+    <!-- /Testimonial-->
+<?php } ?>
 
 <!--Footer -->
 <?php include('includes/footer.php'); ?>
