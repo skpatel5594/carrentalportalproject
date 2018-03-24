@@ -147,9 +147,9 @@ error_reporting(0);
                         <h5><i class="fa fa-filter" aria-hidden="true"></i> Find Your Car </h5>
                     </div>
                     <div class="sidebar_filter">
-                        <form action="#" method="get">
+                        <form method="post">
                             <div class="form-group select">
-                                <select class="form-control">
+                                <select class="form-control" name="brand">
                                     <option>Select Brand</option>
 
                                     <?php $sql = "SELECT * from  tblbrands ";
@@ -159,18 +159,26 @@ error_reporting(0);
                                     $cnt = 1;
                                     if ($query->rowCount() > 0) {
                                         foreach ($results as $result) { ?>
-                                            <option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?></option>
+                                            <option <?php if ($_POST['brand'] == $result->id) echo "selected"; ?>
+                                                    value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?></option>
                                         <?php }
                                     } ?>
 
                                 </select>
                             </div>
                             <div class="form-group select">
-                                <select class="form-control">
+                                <select class="form-control" name="fueltype">
                                     <option>Select Fuel Type</option>
-                                    <option value="Petrol">Petrol</option>
-                                    <option value="Diesel">Diesel</option>
-                                    <option value="CNG">CNG</option>
+                                    <option <?php if ($_POST['fueltype'] == 'Petrol') echo "selected"; ?>
+                                            value="Petrol">
+                                        Petrol
+                                    </option>
+                                    <option <?php if ($_POST['fueltype'] == 'Diesel') echo "selected"; ?>
+                                            value="Diesel">
+                                        Diesel
+                                    </option>
+                                    <option <?php if ($_POST['fueltype'] == 'CNG') echo "selected"; ?> value="CNG">CNG
+                                    </option>
                                 </select>
                             </div>
 

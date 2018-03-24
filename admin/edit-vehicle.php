@@ -200,7 +200,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
                                                     <select class="selectpicker" name="fueltype" required>
-                                                        <option value="<?php echo htmlentities($results->FuelType); ?>"> <?php echo htmlentities($result->FuelType); ?> </option>
+                                                        <option value="<?php echo htmlentities($result->FuelType); ?>"> <?php echo htmlentities($result->FuelType); ?> </option>
 
                                                         <option value="Petrol">Petrol</option>
                                                         <option value="Diesel">Diesel</option>
