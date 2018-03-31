@@ -134,6 +134,11 @@ $_SESSION['brndid'] = $result->bid;
                     <p>₹<?php echo htmlentities($result->PricePerDay); ?> </p>Per Day
 
                 </div>
+                 <div class="col-md-10">
+                <div class="price_info">
+                    <p>₹<?php echo htmlentities($result->PricePerKM); ?> </p>Per KM
+
+                </div>
             </div>
         </div>
         <div class="row">
@@ -324,10 +329,20 @@ $_SESSION['brndid'] = $result->bid;
             <aside class="col-md-3">
 
                 <div class="share_vehicle">
-                    <p>Share: <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a> <a href="#"><i
-                                    class="fa fa-twitter-square" aria-hidden="true"></i></a> <a href="#"><i
-                                    class="fa fa-linkedin-square" aria-hidden="true"></i></a> <a href="#"><i
-                                    class="fa fa-google-plus-square" aria-hidden="true"></i></a></p>
+                    <p>Share:       <a href="https://www.facebook.com/carrentalportal" target="_blank">
+                                    <i class="fa fa-facebook-square" aria-hidden="true"></i></a> 
+
+                                    <a href="https://twitter.com/carrentalportal" target="_blank">
+                                    <i class="fa fa-twitter-square" aria-hidden="true"></i></a> 
+
+                                    <a href="https://in.linkedin.com/carrentalportal" target="_blank">
+                                    <i class="fa fa-linkedin-square" aria-hidden="true"></i></a> 
+
+                                    <a href="https://plus.google.com/carrentalportal" target="_blank">
+                                    <i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
+
+                                    <a href="https://www.instagram.com/carrentalportal" target="_blank">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i></a></p>
                 </div>
                 <div class="sidebar_widget">
                     <div class="widget_heading">
@@ -371,7 +386,7 @@ $_SESSION['brndid'] = $result->bid;
             <div class="row">
                 <?php
                 $bid = $_SESSION['brndid'];
-                $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:bid";
+                $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.PricePerKM,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:bid";
                 $query = $dbh->prepare($sql);
                 $query->bindParam(':bid', $bid, PDO::PARAM_STR);
                 $query->execute();
@@ -391,6 +406,7 @@ $_SESSION['brndid'] = $result->bid;
                                         <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?>
                                             , <?php echo htmlentities($result->VehiclesTitle); ?></a></h5>
                                     <p class="list-price">₹<?php echo htmlentities($result->PricePerDay); ?></p>
+                                    <p class="list-price">₹<?php echo htmlentities($result->PricePerKM); ?></p>
 
                                     <ul class="features_list">
 

@@ -11,6 +11,7 @@ if (strlen($_SESSION['alogin']) == 0) {
         $brand = $_POST['brandname'];
         $vehicleoverview = $_POST['vehicalorcview'];
         $priceperday = $_POST['priceperday'];
+        $priceperKM = $_POST['priceperKM'];
         $fueltype = $_POST['fueltype'];
         $modelyear = $_POST['modelyear'];
         $seatingcapacity = $_POST['seatingcapacity'];
@@ -28,12 +29,13 @@ if (strlen($_SESSION['alogin']) == 0) {
         $leatherseats = $_POST['leatherseats'];
         $id = intval($_GET['id']);
 
-        $sql = "update tblvehicles set VehiclesTitle=:vehicletitle,VehiclesBrand=:brand,VehiclesOverview=:vehicleoverview,PricePerDay=:priceperday,FuelType=:fueltype,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,AirConditioner=:airconditioner,PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where id=:id ";
+        $sql = "update tblvehicles set VehiclesTitle=:vehicletitle,VehiclesBrand=:brand,VehiclesOverview=:vehicleoverview,PricePerDay=:priceperday,PricePerKM=:priceperKM,FuelType=:fueltype,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,AirConditioner=:airconditioner,PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where id=:id ";
         $query = $dbh->prepare($sql);
         $query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
         $query->bindParam(':brand', $brand, PDO::PARAM_STR);
         $query->bindParam(':vehicleoverview', $vehicleoverview, PDO::PARAM_STR);
         $query->bindParam(':priceperday', $priceperday, PDO::PARAM_STR);
+        $query->bindParam(':priceperKM', $priceperKM, PDO::PARAM_STR);
         $query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
         $query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
         $query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
@@ -145,14 +147,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                         { ?>
 
                                         <form method="post" class="form-horizontal" enctype="multipart/form-data">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Vehicle Title<span
-                                                            style="color:red">*</span></label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" name="vehicletitle" class="form-control"
-                                                           value="<?php echo htmlentities($result->VehiclesTitle) ?>"
-                                                           required>
-                                                </div>
+                                           
                                                 <label class="col-sm-2 control-label">Select Brand<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
@@ -176,6 +171,14 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                                     </select>
                                                 </div>
+                                                 <div class="form-group">
+                                                <label class="col-sm-2 control-label">Vehicle Title<span
+                                                            style="color:red">*</span></label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" name="vehicletitle" class="form-control"
+                                                           value="<?php echo htmlentities($result->VehiclesTitle) ?>"
+                                                           required>
+                                                </div>
                                             </div>
 
                                             <div class="hr-dashed"></div>
@@ -188,14 +191,27 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                 </div>
                                             </div>
 
+
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Price Per Day(in Rs.)<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
-                                                    <input type="text" name="priceperday" class="form-control"
-                                                           value="<?php echo htmlentities($result->PricePerDay); ?>"
+                                                    <input type="text" name="priceperday" class="form-control" 
+                                                    value="<?php echo htmlentities($result->PricePerDay); ?>"
                                                            required>
+                                                </div>  
+
+                                                 <div class="form-group">
+                                                 <label class="col-sm-2 control-label">Price Per KM(in Rs.)<span
+                                                            style="color:red">*</span></label>
+                                                <div class="col-sm-4">            
+                                                    <input type="text" name="priceperKM" class=" form-control"
+                                                     value="<?php echo htmlentities($result->PricePerKM) ?>"
+                                                        required>
                                                 </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                 <label class="col-sm-2 control-label">Select Fuel Type<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">

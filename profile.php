@@ -185,13 +185,13 @@ if (strlen($_SESSION['login']) == 0) {
                                     <label class="control-label">Phone Number</label>
                                     <input class="form-control white_bg" name="mobilenumber"
                                            value="<?php echo htmlentities($result->ContactNo); ?>" id="phone-number"
-                                           type="text" required>
+                                           type="number" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Date of Birth&nbsp;(dd/mm/yyyy)</label>
                                     <input class="form-control white_bg"
                                            value="<?php echo htmlentities($result->dob); ?>" name="dob"
-                                           placeholder="dd/mm/yyyy" id="birth-date" type="text">
+                                           placeholder="dd/mm/yyyy" id="birth-date" type="date">
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Your Address</label>

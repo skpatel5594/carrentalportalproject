@@ -113,6 +113,7 @@ error_reporting(0);
                                     <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?>
                                         , <?php echo htmlentities($result->VehiclesTitle); ?></a></h5>
                                 <p class="list-price">₹<?php echo htmlentities($result->PricePerDay); ?> Per Day</p>
+                                <p class="list-price">₹<?php echo htmlentities($result->PricePerKM); ?> Per KM</p>
                                 <ul>
                                     <li><i class="fa fa-user"
                                            aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity); ?>
@@ -200,7 +201,10 @@ error_reporting(0);
                                                 , <?php echo htmlentities($result->VehiclesTitle); ?></a>
                                             <p class="widget_price">₹<?php echo htmlentities($result->PricePerDay); ?>
                                                 Per Day</p>
+                                            <p class="widget_price">₹<?php echo htmlentities($result->PricePerKM); ?>
+                                                Per KM</p>
                                         </div>
+                                        
                                     </li>
                                 <?php }
                             } ?>
