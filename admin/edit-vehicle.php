@@ -147,7 +147,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                         { ?>
 
                                         <form method="post" class="form-horizontal" enctype="multipart/form-data">
-                                           
+                                            <div class="form-group">
                                                 <label class="col-sm-2 control-label">Select Brand<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
@@ -171,7 +171,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                                     </select>
                                                 </div>
-                                                 <div class="form-group">
                                                 <label class="col-sm-2 control-label">Vehicle Title<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
@@ -191,27 +190,14 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                 </div>
                                             </div>
 
-
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Price Per Day(in Rs.)<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
-                                                    <input type="text" name="priceperday" class="form-control" 
-                                                    value="<?php echo htmlentities($result->PricePerDay); ?>"
+                                                    <input type="text" name="priceperday" class="form-control"
+                                                           value="<?php echo htmlentities($result->PricePerDay); ?>"
                                                            required>
-                                                </div>  
-
-                                                 <div class="form-group">
-                                                 <label class="col-sm-2 control-label">Price Per KM(in Rs.)<span
-                                                            style="color:red">*</span></label>
-                                                <div class="col-sm-4">            
-                                                    <input type="text" name="priceperKM" class=" form-control"
-                                                     value="<?php echo htmlentities($result->PricePerKM) ?>"
-                                                        required>
                                                 </div>
-                                                </div>
-
-                                                <div class="form-group">
                                                 <label class="col-sm-2 control-label">Select Fuel Type<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
@@ -222,6 +208,17 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                         <option value="Diesel">Diesel</option>
                                                         <option value="CNG">CNG</option>
                                                     </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Price Per KM(in Rs.)<span
+                                                            style="color:red">*</span></label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" name="priceperKM" class=" form-control"
+                                                           value="<?php echo htmlentities($result->PricePerKM) ?>"
+                                                           required>
                                                 </div>
                                             </div>
 

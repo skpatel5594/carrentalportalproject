@@ -17,15 +17,20 @@
                             <a href="tel:61-1234-5678-09">+91-1234-5678-9</a></div>
                         <div class="social-follow">
                             <ul>
-                                <li><a href="https://www.facebook.com/carrentalportal" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/carrentalportal" target="_blank"><i
+                                                class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
 
-                                <li><a href="https://twitter.com/carrentalportal" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
-                                
-                                <li><a href="https://in.linkedin.com/carrentalportal" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                                <li><a href="https://twitter.com/carrentalportal" target="_blank"><i
+                                                class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
 
-                                <li><a href="https://plus.google.com/carrentalportal" target="_blank"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>
+                                <li><a href="https://in.linkedin.com/carrentalportal" target="_blank"><i
+                                                class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
 
-                                <li><a href="https://www.instagram.com/carrentalportal" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://plus.google.com/carrentalportal" target="_blank"><i
+                                                class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>
+
+                                <li><a href="https://www.instagram.com/carrentalportal" target="_blank"><i
+                                                class="fa fa-instagram" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                         <?php if (strlen($_SESSION['login']) == 0) {

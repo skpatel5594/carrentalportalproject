@@ -204,7 +204,7 @@ error_reporting(0);
                                             <p class="widget_price">₹<?php echo htmlentities($result->PricePerKM); ?>
                                                 Per KM</p>
                                         </div>
-                                        
+
                                     </li>
                                 <?php }
                             } ?>
