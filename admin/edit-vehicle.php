@@ -7,56 +7,80 @@ if (strlen($_SESSION['alogin']) == 0) {
 } else {
 
     if (isset($_POST['submit'])) {
-        $vehicletitle = $_POST['vehicletitle'];
-        $brand = $_POST['brandname'];
-        $vehicleoverview = $_POST['vehicalorcview'];
-        $priceperday = $_POST['priceperday'];
-        $priceperKM = $_POST['priceperKM'];
-        $fueltype = $_POST['fueltype'];
-        $modelyear = $_POST['modelyear'];
-        $seatingcapacity = $_POST['seatingcapacity'];
-        $airconditioner = $_POST['airconditioner'];
-        $powerdoorlocks = $_POST['powerdoorlocks'];
-        $antilockbrakingsys = $_POST['antilockbrakingsys'];
-        $brakeassist = $_POST['brakeassist'];
-        $powersteering = $_POST['powersteering'];
-        $driverairbag = $_POST['driverairbag'];
-        $passengerairbag = $_POST['passengerairbag'];
-        $powerwindow = $_POST['powerwindow'];
-        $cdplayer = $_POST['cdplayer'];
-        $centrallocking = $_POST['centrallocking'];
-        $crashcensor = $_POST['crashcensor'];
-        $leatherseats = $_POST['leatherseats'];
-        $id = intval($_GET['id']);
+        $Response = "SUCCESS";
+        $msg = "";
+        if (empty($_POST['priceperday'])) {
+            $Response = "ERROR";
+            $msg .= "Price Per Day is required<br/>";
+        }
+        if (isset($_POST['priceperday'])) {
+            if (!is_numeric($_POST['priceperday'])) {
+                $Response = "ERROR";
+                $msg .= "Price Per Day must be a number<br/>";
+            }
+        }
+        if (isset($_POST['priceperKM'])) {
+            if (!is_numeric($_POST['priceperKM'])) {
+                $Response = "ERROR";
+                $msg .= "Price Per KM must be a number<br/>";
+            }
+        }
+        if (isset($_POST['seatingcapacity'])) {
+            if (!is_numeric($_POST['seatingcapacity'])) {
+                $Response = "ERROR";
+                $msg .= "Seating Capacity must be a number<br/>";
+            }
+        }
+        if ($Response == "SUCCESS") {
+            $vehicletitle = $_POST['vehicletitle'];
+            $brand = $_POST['brandname'];
+            $vehicleoverview = $_POST['vehicalorcview'];
+            $priceperday = $_POST['priceperday'];
+            $priceperKM = $_POST['priceperKM'];
+            $fueltype = $_POST['fueltype'];
+            $modelyear = $_POST['modelyear'];
+            $seatingcapacity = $_POST['seatingcapacity'];
+            $airconditioner = $_POST['airconditioner'];
+            $powerdoorlocks = $_POST['powerdoorlocks'];
+            $antilockbrakingsys = $_POST['antilockbrakingsys'];
+            $brakeassist = $_POST['brakeassist'];
+            $powersteering = $_POST['powersteering'];
+            $driverairbag = $_POST['driverairbag'];
+            $passengerairbag = $_POST['passengerairbag'];
+            $powerwindow = $_POST['powerwindow'];
+            $cdplayer = $_POST['cdplayer'];
+            $centrallocking = $_POST['centrallocking'];
+            $crashcensor = $_POST['crashcensor'];
+            $leatherseats = $_POST['leatherseats'];
+            $id = intval($_GET['id']);
 
-        $sql = "update tblvehicles set VehiclesTitle=:vehicletitle,VehiclesBrand=:brand,VehiclesOverview=:vehicleoverview,PricePerDay=:priceperday,PricePerKM=:priceperKM,FuelType=:fueltype,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,AirConditioner=:airconditioner,PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where id=:id ";
-        $query = $dbh->prepare($sql);
-        $query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
-        $query->bindParam(':brand', $brand, PDO::PARAM_STR);
-        $query->bindParam(':vehicleoverview', $vehicleoverview, PDO::PARAM_STR);
-        $query->bindParam(':priceperday', $priceperday, PDO::PARAM_STR);
-        $query->bindParam(':priceperKM', $priceperKM, PDO::PARAM_STR);
-        $query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
-        $query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
-        $query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
-        $query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
-        $query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
-        $query->bindParam(':antilockbrakingsys', $antilockbrakingsys, PDO::PARAM_STR);
-        $query->bindParam(':brakeassist', $brakeassist, PDO::PARAM_STR);
-        $query->bindParam(':powersteering', $powersteering, PDO::PARAM_STR);
-        $query->bindParam(':driverairbag', $driverairbag, PDO::PARAM_STR);
-        $query->bindParam(':passengerairbag', $passengerairbag, PDO::PARAM_STR);
-        $query->bindParam(':powerwindow', $powerwindow, PDO::PARAM_STR);
-        $query->bindParam(':cdplayer', $cdplayer, PDO::PARAM_STR);
-        $query->bindParam(':centrallocking', $centrallocking, PDO::PARAM_STR);
-        $query->bindParam(':crashcensor', $crashcensor, PDO::PARAM_STR);
-        $query->bindParam(':leatherseats', $leatherseats, PDO::PARAM_STR);
-        $query->bindParam(':id', $id, PDO::PARAM_STR);
-        $query->execute();
+            $sql = "update tblvehicles set VehiclesTitle=:vehicletitle,VehiclesBrand=:brand,VehiclesOverview=:vehicleoverview,PricePerDay=:priceperday,PricePerKM=:priceperKM,FuelType=:fueltype,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,AirConditioner=:airconditioner,PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where id=:id ";
+            $query = $dbh->prepare($sql);
+            $query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
+            $query->bindParam(':brand', $brand, PDO::PARAM_STR);
+            $query->bindParam(':vehicleoverview', $vehicleoverview, PDO::PARAM_STR);
+            $query->bindParam(':priceperday', $priceperday, PDO::PARAM_STR);
+            $query->bindParam(':priceperKM', $priceperKM, PDO::PARAM_STR);
+            $query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
+            $query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
+            $query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
+            $query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
+            $query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
+            $query->bindParam(':antilockbrakingsys', $antilockbrakingsys, PDO::PARAM_STR);
+            $query->bindParam(':brakeassist', $brakeassist, PDO::PARAM_STR);
+            $query->bindParam(':powersteering', $powersteering, PDO::PARAM_STR);
+            $query->bindParam(':driverairbag', $driverairbag, PDO::PARAM_STR);
+            $query->bindParam(':passengerairbag', $passengerairbag, PDO::PARAM_STR);
+            $query->bindParam(':powerwindow', $powerwindow, PDO::PARAM_STR);
+            $query->bindParam(':cdplayer', $cdplayer, PDO::PARAM_STR);
+            $query->bindParam(':centrallocking', $centrallocking, PDO::PARAM_STR);
+            $query->bindParam(':crashcensor', $crashcensor, PDO::PARAM_STR);
+            $query->bindParam(':leatherseats', $leatherseats, PDO::PARAM_STR);
+            $query->bindParam(':id', $id, PDO::PARAM_STR);
+            $query->execute();
 
-        $msg = "Data updated successfully";
-
-
+            $msg = "Data updated successfully";
+        }
     }
 
 
@@ -129,8 +153,9 @@ if (strlen($_SESSION['alogin']) == 0) {
                                     <div class="panel-heading">Basic Info</div>
                                     <div class="panel-body">
                                         <?php if ($msg) { ?>
-                                            <div class="succWrap"><strong>SUCCESS</strong>
-                                            :<?php echo htmlentities($msg); ?> </div><?php } ?>
+                                            <div class="succWrap">
+                                            <strong><?php echo isset($Response) ? $Response : $Response ?></strong>
+                                            :<?php echo $msg; ?> </div><?php } ?>
                                         <?php
                                         $id = intval($_GET['id']);
                                         $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:id";
@@ -226,9 +251,12 @@ if (strlen($_SESSION['alogin']) == 0) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Model Year<span style="color:red">*</span></label>
                                                 <div class="col-sm-4">
-                                                    <input type="text" name="modelyear" class="form-control"
-                                                           value="<?php echo htmlentities($result->ModelYear); ?>"
-                                                           required>
+                                                    <select class="selectpicker" name="modelyear" required>
+                                                        <option value=""> Select</option>
+                                                        <?php foreach (range(1990, 2018) as $year): ?>
+                                                            <option value="<?php echo htmlentities($year); ?>" <?php echo $result->ModelYear == $year ? "selected" : ""; ?> ><?php echo htmlentities($year); ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
                                                 </div>
                                                 <label class="col-sm-2 control-label">Seating Capacity<span
                                                             style="color:red">*</span></label>
