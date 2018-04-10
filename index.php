@@ -69,7 +69,7 @@ error_reporting(0);
 </section>
 <!-- /Banners -->
 
-<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.PricePerKM,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
 $query = $dbh->prepare($sql);
 $query->execute();
 $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -131,7 +131,9 @@ if ($query->rowCount() > 0) {
                                             <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?>
                                                 , <?php echo htmlentities($result->VehiclesTitle); ?></a></h6>
                                         <span class="price">₹<?php echo htmlentities($result->PricePerDay); ?>
-                                            /Day</span>
+                                            /Day</span><br>
+                                        <span class="price">₹<?php echo htmlentities($result->PricePerKM); ?>
+                                                /KM</span>
                                     </div>
                                     <div class="inventory_info_m">
                                         <p><?php echo substr($result->VehiclesOverview, 0, 70); ?></p>

@@ -48,7 +48,7 @@ if (strlen($_SESSION['alogin']) == 0) {
             $driverairbag = $_POST['driverairbag'];
             $passengerairbag = $_POST['passengerairbag'];
             $powerwindow = $_POST['powerwindow'];
-            $cdplayer = $_POST['cdplayer'];
+            $MP3player = $_POST['MP3player'];
             $centrallocking = $_POST['centrallocking'];
             $crashcensor = $_POST['crashcensor'];
             $leatherseats = $_POST['leatherseats'];
@@ -72,7 +72,7 @@ if (strlen($_SESSION['alogin']) == 0) {
             $query->bindParam(':driverairbag', $driverairbag, PDO::PARAM_STR);
             $query->bindParam(':passengerairbag', $passengerairbag, PDO::PARAM_STR);
             $query->bindParam(':powerwindow', $powerwindow, PDO::PARAM_STR);
-            $query->bindParam(':cdplayer', $cdplayer, PDO::PARAM_STR);
+            $query->bindParam(':MP3player', $MP3player, PDO::PARAM_STR);
             $query->bindParam(':centrallocking', $centrallocking, PDO::PARAM_STR);
             $query->bindParam(':crashcensor', $crashcensor, PDO::PARAM_STR);
             $query->bindParam(':leatherseats', $leatherseats, PDO::PARAM_STR);
@@ -473,18 +473,18 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                                         <div class="form-group">
                                                             <div class="col-sm-3">
-                                                                <?php if ($result->CDPlayer == 1) {
+                                                                <?php if ($result->MP3Player == 1) {
                                                                     ?>
                                                                     <div class="checkbox checkbox-inline">
                                                                         <input type="checkbox" id="inlineCheckbox1"
-                                                                               name="cdplayer" checked value="1">
-                                                                        <label for="inlineCheckbox1"> CD Player </label>
+                                                                               name="MP3player" checked value="1">
+                                                                        <label for="inlineCheckbox1"> MP3 Player </label>
                                                                     </div>
                                                                 <?php } else { ?>
                                                                     <div class="checkbox checkbox-inline">
                                                                         <input type="checkbox" id="inlineCheckbox1"
-                                                                               name="cdplayer" value="1">
-                                                                        <label for="inlineCheckbox1"> CD Player </label>
+                                                                               name="MP3player" value="1">
+                                                                        <label for="inlineCheckbox1"> MP3 Player </label>
                                                                     </div>
                                                                 <?php } ?>
                                                             </div>

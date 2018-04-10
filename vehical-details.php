@@ -235,8 +235,8 @@ $_SESSION['brndid'] = $result->bid;
                                         </tr>
 
                                         <tr>
-                                            <td>CD Player</td>
-                                            <?php if ($result->CDPlayer == 1) {
+                                            <td>MP3 Player</td>
+                                            <?php if ($result->MP3Player == 1) {
                                                 ?>
                                                 <td><i class="fa fa-check" aria-hidden="true"></i></td>
                                             <?php } else { ?>
