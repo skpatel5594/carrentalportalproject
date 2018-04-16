@@ -7,31 +7,29 @@ if (strlen($_SESSION['alogin']) == 0) {
 } else {
 
     if (isset($_POST['submit'])) {
-        $Response = "SUCCESS";
-        $msg = "";
-        if (empty($_POST['priceperday'])) {
-            $Response = "ERROR";
-            $msg .= "Price Per Day is required<br/>";
-        }
-        if (isset($_POST['priceperday'])) {
-            if (!is_numeric($_POST['priceperday'])) {
-                $Response = "ERROR";
-                $msg .= "Price Per Day must be a number<br/>";
-            }
-        }
-        if (isset($_POST['priceperKM'])) {
-            if (!is_numeric($_POST['priceperKM'])) {
-                $Response = "ERROR";
-                $msg .= "Price Per KM must be a number<br/>";
-            }
-        }
-        if (isset($_POST['seatingcapacity'])) {
-            if (!is_numeric($_POST['seatingcapacity'])) {
-                $Response = "ERROR";
-                $msg .= "Seating Capacity must be a number<br/>";
-            }
-        }
-        if ($Response == "SUCCESS") {
+        $msg = [];
+        $rules = [
+            'priceperday' => [
+                'required',
+                'integer',
+            ],
+            'priceperKM' => [
+                'required',
+                'integer',
+            ],
+            'seatingcapacity' => [
+                'required',
+                'integer',
+            ],
+        ];
+        $naming = [
+            'priceperday' => 'Price Per Day',
+            'priceperKM' => 'Price Per KM',
+            'seatingcapacity' => 'Seating Capacity',
+        ];
+        $validation_result = \SimpleValidator\Validator::validate($_POST, $rules, $naming);
+        if ($validation_result->isSuccess() == true) {
+            $Response = "SUCCESS";
             $vehicletitle = $_POST['vehicletitle'];
             $brand = $_POST['brandname'];
             $vehicleoverview = $_POST['vehicalorcview'];
@@ -79,7 +77,10 @@ if (strlen($_SESSION['alogin']) == 0) {
             $query->bindParam(':id', $id, PDO::PARAM_STR);
             $query->execute();
 
-            $msg = "Data updated successfully";
+            $msg['default'] = 'Data updated successfully';
+        } else {
+            $Response = "ERROR";
+            $msg = $validation_result->getErrors();
         }
     }
 
@@ -154,8 +155,11 @@ if (strlen($_SESSION['alogin']) == 0) {
                                     <div class="panel-body">
                                         <?php if ($msg) { ?>
                                             <div class="succWrap">
-                                            <strong><?php echo isset($Response) ? $Response : $Response ?></strong>
-                                            :<?php echo $msg; ?> </div><?php } ?>
+                                            <strong><?php echo isset($Response) ? $Response : $Response ?>:</strong>
+                                            <?php foreach ($msg as $singlemsg): ?>
+                                                <br><?php echo $singlemsg; ?>
+                                            <?php endforeach; ?>
+                                            </div><?php } ?>
                                         <?php
                                         $id = intval($_GET['id']);
                                         $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:id";
@@ -478,13 +482,15 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                                     <div class="checkbox checkbox-inline">
                                                                         <input type="checkbox" id="inlineCheckbox1"
                                                                                name="MP3player" checked value="1">
-                                                                        <label for="inlineCheckbox1"> MP3 Player </label>
+                                                                        <label for="inlineCheckbox1"> MP3
+                                                                            Player </label>
                                                                     </div>
                                                                 <?php } else { ?>
                                                                     <div class="checkbox checkbox-inline">
                                                                         <input type="checkbox" id="inlineCheckbox1"
                                                                                name="MP3player" value="1">
-                                                                        <label for="inlineCheckbox1"> MP3 Player </label>
+                                                                        <label for="inlineCheckbox1"> MP3
+                                                                            Player </label>
                                                                     </div>
                                                                 <?php } ?>
                                                             </div>

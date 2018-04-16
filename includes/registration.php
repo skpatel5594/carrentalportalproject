@@ -1,22 +1,51 @@
 <?php
 //error_reporting(0);
 if (isset($_POST['signup'])) {
-    $fname = $_POST['fullname'];
-    $email = $_POST['emailid'];
-    $mobile = $_POST['mobileno'];
-    $password = md5($_POST['password']);
-    $sql = "INSERT INTO  tblusers(FullName,EmailId,ContactNo,Password) VALUES(:fname,:email,:mobile,:password)";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':fname', $fname, PDO::PARAM_STR);
-    $query->bindParam(':email', $email, PDO::PARAM_STR);
-    $query->bindParam(':mobile', $mobile, PDO::PARAM_STR);
-    $query->bindParam(':password', $password, PDO::PARAM_STR);
-    $query->execute();
-    $lastInsertId = $dbh->lastInsertId();
-    if ($lastInsertId) {
-        echo "<script>alert('Registration successfull. Now you can login');</script>";
+    $msg = [];
+    $rules = [
+        'fullname' => [
+            'required',
+        ],
+        'emailid' => [
+            'required',
+            'email',
+        ],
+        'mobileno' => [
+            'required',
+        ],
+        'password' => [
+            'required',
+        ],
+    ];
+    $naming = [
+        'fullname' => 'Full Name',
+        'emailid' => 'Email',
+        'mobileno' => 'Mobile number',
+        'password' => 'Password',
+    ];
+    $validation_result = \SimpleValidator\Validator::validate($_POST, $rules, $naming);
+    if ($validation_result->isSuccess()) {
+        $fname = $_POST['fullname'];
+        $email = $_POST['emailid'];
+        $mobile = $_POST['mobileno'];
+        $password = md5($_POST['password']);
+        $sql = "INSERT INTO  tblusers(FullName,EmailId,ContactNo,Password) VALUES(:fname,:email,:mobile,:password)";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->bindParam(':mobile', $mobile, PDO::PARAM_STR);
+        $query->bindParam(':password', $password, PDO::PARAM_STR);
+        $query->execute();
+        $lastInsertId = $dbh->lastInsertId();
+        if ($lastInsertId) {
+            echo "<script>alert('Registration successfull. Now you can login');</script>";
+        } else {
+            echo "<script>alert('Something went wrong. Please try again');</script>";
+        }
     } else {
-        echo "<script>alert('Something went wrong. Please try again');</script>";
+        $msg = $validation_result->getErrors();
+        $Response = "Errors";
+        echo "<script>alert('You are missing something.');</script>";
     }
 }
 
@@ -62,6 +91,13 @@ if (isset($_POST['signup'])) {
                     <div class="signup_wrap">
                         <div class="col-md-12 col-sm-6">
                             <form method="post" name="signup" onSubmit="return valid();">
+                                <?php if ($msg) { ?>
+                                    <div class="succWrap">
+                                    <strong><?php echo isset($Response) ? $Response : $Response ?>:</strong>
+                                    <?php foreach ($msg as $singlemsg): ?>
+                                        <br><?php echo $singlemsg; ?>
+                                    <?php endforeach; ?>
+                                    </div><?php } ?>
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="fullname" placeholder="Full Name"
                                            required="required">

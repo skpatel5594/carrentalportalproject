@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
 // DB credentials.
 $minimumKmMsg = 'Minimum 300 Kms';
 define('DB_HOST', 'localhost');
