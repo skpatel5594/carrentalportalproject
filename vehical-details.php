@@ -5,16 +5,18 @@ error_reporting(0);
 if (isset($_POST['submit'])) {
     $fromdate = $_POST['fromdate'];
     $todate = $_POST['todate'];
+    $estimatedKms = $_POST['estimatedKms'];
     $message = $_POST['message'];
     $useremail = $_SESSION['login'];
     $status = 0;
     $vhid = $_GET['vhid'];
-    $sql = "INSERT INTO  tblbooking(userEmail,VehicleId,FromDate,ToDate,message,Status) VALUES(:useremail,:vhid,:fromdate,:todate,:message,:status)";
+    $sql = "INSERT INTO  tblbooking(userEmail,VehicleId,FromDate,ToDate,estimatedKms,message,Status) VALUES(:useremail,:vhid,:fromdate,:todate,:estimatedKms,:message,:status)";
     $query = $dbh->prepare($sql);
     $query->bindParam(':useremail', $useremail, PDO::PARAM_STR);
     $query->bindParam(':vhid', $vhid, PDO::PARAM_STR);
     $query->bindParam(':fromdate', $fromdate, PDO::PARAM_STR);
     $query->bindParam(':todate', $todate, PDO::PARAM_STR);
+    $query->bindParam(':estimatedKms', $estimatedKms, PDO::PARAM_STR);
     $query->bindParam(':message', $message, PDO::PARAM_STR);
     $query->bindParam(':status', $status, PDO::PARAM_STR);
     $query->execute();
@@ -134,12 +136,14 @@ $_SESSION['brndid'] = $result->bid;
                     <p>₹<?php echo htmlentities($result->PricePerDay); ?> </p>Per Day
 
                 </div>
-                <div class="col-md-10">
+                <?php if ($result->PricePerKM): ?>
+                    <div class="clearfix">&nbsp;</div>
                     <div class="price_info">
                         <p>₹<?php echo htmlentities($result->PricePerKM); ?> </p>Per KM
-
+                        <br>
+                        <?php echo $minimumKmMsg; ?>
                     </div>
-                </div>
+                <?php endif; ?>
             </div>
             <div class="row">
                 <div class="col-md-9">
@@ -359,6 +363,9 @@ $_SESSION['brndid'] = $result->bid;
                                        required>
                             </div>
                             <div class="form-group">
+                                <input type="text" class="form-control" name="estimatedKms" placeholder="Estimated Kilometers">
+                            </div>
+                            <div class="form-group">
                             <textarea rows="4" class="form-control" name="message" placeholder="Message"
                                       required></textarea>
                             </div>
@@ -407,8 +414,9 @@ $_SESSION['brndid'] = $result->bid;
                                         <h5>
                                             <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?>
                                                 , <?php echo htmlentities($result->VehiclesTitle); ?></a></h5>
-                                        <p class="list-price">₹<?php echo htmlentities($result->PricePerDay); ?></p>
-                                        <p class="list-price">₹<?php echo htmlentities($result->PricePerKM); ?></p>
+                                        <p class="list-price">₹<?php echo htmlentities($result->PricePerDay); ?>/Day</p>
+                                        <p></p>
+                                        <p class="list-price">₹<?php echo htmlentities($result->PricePerKM); ?>/KM</p>
 
                                         <ul class="features_list">
 

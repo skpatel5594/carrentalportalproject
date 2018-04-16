@@ -1,5 +1,6 @@
 <?php
 // DB credentials.
+$minimumKmMsg = 'Minimum 300 Kms';
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');

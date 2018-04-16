@@ -131,9 +131,13 @@ if ($query->rowCount() > 0) {
                                             <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?>
                                                 , <?php echo htmlentities($result->VehiclesTitle); ?></a></h6>
                                         <span class="price">₹<?php echo htmlentities($result->PricePerDay); ?>
-                                            /Day</span><br>
-                                        <span class="price">₹<?php echo htmlentities($result->PricePerKM); ?>
-                                                /KM</span>
+                                            /Day
+                                        <?php if ($result->PricePerKM): ?>
+                                            <br>
+                                            ₹<?php echo htmlentities($result->PricePerKM); ?>
+                                                /KM
+                                        <?php endif; ?>
+                                            </span>
                                     </div>
                                     <div class="inventory_info_m">
                                         <p><?php echo substr($result->VehiclesOverview, 0, 70); ?></p>

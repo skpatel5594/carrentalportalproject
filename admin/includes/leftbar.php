@@ -26,7 +26,19 @@
         <li><a href="update-contactinfo.php"><i class="fa fa-files-o"></i> Update Contact Info</a></li>
 
         <li><a href="manage-subscribers.php"><i class="fa fa-table"></i> Manage Subscribers</a></li>
-        <li><a href="reports.php"><i class="fa fa-table"></i> Reports </a></li>
+       
+        
+        <li><a href="#"><i class="fa fa-sitemap"></i>Reports</a>
+             <ul>
+                <li><a href="allreports.php">All</a></li>
+                <li><a href="bookingreports.php">Bookings</a></li>
+                <li><a href="Contactusqueryreports.php">Contactusquery</a></li>
+                <li><a href="subscribersreports.php">Subscribers</a></li>
+                <li><a href="testimonialreports.php">Testimonial</a></li>
+                <li><a href="usersreports.php">users</a></li>
+                <li><a href="vehiclesreports.php">Vehicles</a></li>
+
+            </ul>
 
     </ul>
 </nav>

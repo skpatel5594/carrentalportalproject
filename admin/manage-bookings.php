@@ -119,6 +119,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                         <th>Message</th>
                                         <th>Status</th>
                                         <th>Posting date</th>
+                                        <th>Estimated KMs</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -132,12 +133,13 @@ if (strlen($_SESSION['alogin']) == 0) {
                                         <th>Message</th>
                                         <th>Status</th>
                                         <th>Posting date</th>
+                                        <th>Estimated KMs</th>
                                         <th>Action</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
 
-                                    <?php $sql = "SELECT tblusers.FullName,tblbrands.BrandName,tblvehicles.VehiclesTitle,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,tblbooking.id  from tblbooking join tblvehicles on tblvehicles.id=tblbooking.VehicleId join tblusers on tblusers.EmailId=tblbooking.userEmail join tblbrands on tblvehicles.VehiclesBrand=tblbrands.id  ";
+                                    <?php $sql = "SELECT tblusers.FullName,tblbrands.BrandName,tblvehicles.VehiclesTitle,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,tblbooking.id,tblbooking.estimatedKms  from tblbooking join tblvehicles on tblvehicles.id=tblbooking.VehicleId join tblusers on tblusers.EmailId=tblbooking.userEmail join tblbrands on tblvehicles.VehiclesBrand=tblbrands.id  ";
                                     $query = $dbh->prepare($sql);
                                     $query->execute();
                                     $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -163,6 +165,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                     }
                                                     ?></td>
                                                 <td><?php echo htmlentities($result->PostingDate); ?></td>
+                                                <td><?php echo htmlentities($result->estimatedKms); ?></td>
                                                 <td>
                                                     <a href="manage-bookings.php?aeid=<?php echo htmlentities($result->id); ?>"
                                                        onclick="return confirm('Do you really want to Confirm this booking')">
