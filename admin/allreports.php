@@ -74,7 +74,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
             <div class="container-fluid">
                 <div class="wrapper">
-					
+					<button class="btn btn-default" id="printButton" onclick="printThisDom()">Print</button>
+                    <div id="printable">
 
 					<br><br><br>
 					<b> <h1><center>Bookings</center></h1></b>
@@ -375,6 +376,15 @@ if (strlen($_SESSION['alogin']) == 0) {
         <script src="js/fileinput.js"></script>
         <script src="js/chartData.js"></script>
         <script src="js/main.js"></script>
+        
+        <script type="text/javascript">
+            
+            function printThisDom(){
+                $('#printButton').hide();
+                window.print(); 
+                $('#printButton').show();
+            }
+        </script>
 
     </body>
     </html>

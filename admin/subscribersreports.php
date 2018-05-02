@@ -74,7 +74,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 
             <div class="container-fluid">
                 <div class="wrapper">
-					
+
+                    <button class="btn btn-default" id="printButton" onclick="printThisDom()">Print</button>
+                    <div id="printable">
 <b> <h1><center>Subscribers</center></h1></b>
 <br>
 <?php
@@ -113,6 +115,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
                 </div>
+                </div>
             </div>
         </div>
 
@@ -126,6 +129,14 @@ if (strlen($_SESSION['alogin']) == 0) {
         <script src="js/fileinput.js"></script>
         <script src="js/chartData.js"></script>
         <script src="js/main.js"></script>
+        <script type="text/javascript">
+            
+            function printThisDom(){
+                $('#printButton').hide();
+                window.print(); 
+                $('#printButton').show();
+            }
+        </script>
 
     </body>
     </html>
