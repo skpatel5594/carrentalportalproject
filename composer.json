@@ -1,5 +1,6 @@
 {
-    "require": {
-        "simple-validator/simple-validator": "^1.0"
-    }
+"require dev" : {
+	"phpunit/phpunit":"4.3.4"
+}
+
 }

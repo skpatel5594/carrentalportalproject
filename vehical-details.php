@@ -133,13 +133,13 @@ $_SESSION['brndid'] = $result->bid;
             </div>
             <div class="col-md-3">
                 <div class="price_info">
-                    <p>₹<?php echo htmlentities($result->PricePerDay); ?> </p>Per Day
+                    <p>$<?php echo htmlentities($result->PricePerDay); ?> </p>Per Day
 
                 </div>
                 <?php if ($result->PricePerKM): ?>
                     <div class="clearfix">&nbsp;</div>
                     <div class="price_info">
-                        <p>₹<?php echo htmlentities($result->PricePerKM); ?> </p>Per KM
+                        <p>$<?php echo htmlentities($result->PricePerKM); ?> </p>Per KM
                         <br>
                         <?php echo $minimumKmMsg; ?>
                     </div>
@@ -354,12 +354,14 @@ $_SESSION['brndid'] = $result->bid;
                         </div>
                         <form method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="fromdate"
-                                       placeholder="From Date(dd/mm/yyyy)"
-                                       required>
+                                <input value="<?php echo date('2019-05-23'); ?>"
+                                <input type="date" id="fromdate" class="form-control" name="fromdate"
+                                        placeholder="Date(dd/mm/yyyy)"
+                                        required>
+
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="todate" placeholder="To Date(dd/mm/yyyy)"
+                                <input type="Date" class="form-control" name="todate" placeholder="To Date(dd/mm/yyyy)"
                                        required>
                             </div>
                             <div class="form-group">
@@ -414,9 +416,9 @@ $_SESSION['brndid'] = $result->bid;
                                         <h5>
                                             <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?>
                                                 , <?php echo htmlentities($result->VehiclesTitle); ?></a></h5>
-                                        <p class="list-price">₹<?php echo htmlentities($result->PricePerDay); ?>/Day</p>
+                                        <p class="list-price">$<?php echo htmlentities($result->PricePerDay); ?>/Day</p>
                                         <p></p>
-                                        <p class="list-price">₹<?php echo htmlentities($result->PricePerKM); ?>/KM</p>
+                                        <p class="list-price">$<?php echo htmlentities($result->PricePerKM); ?>/KM</p>
 
                                         <ul class="features_list">
 
@@ -473,6 +475,7 @@ $_SESSION['brndid'] = $result->bid;
 <script src="assets/js/bootstrap-slider.min.js"></script>
 <script src="assets/js/slick.min.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
+<script>$("#fromdate").datepicker().datepicker("setDate", new Date()); </script>
 
 </body>
 </html>

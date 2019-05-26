@@ -191,7 +191,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label">Price Per Day(in Rs.)<span
+                                                <label class="col-sm-2 control-label">Price Per Day(in $)<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
                                                     <input type="text" name="priceperday" class="form-control" required>
@@ -203,13 +203,13 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                         <option value=""> Select</option>
                                                         <option value="Petrol">Petrol</option>
                                                         <option value="Diesel">Diesel</option>
-                                                        <option value="CNG">CNG</option>
+                                                        <option value="CNG">Electric</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label">Price Per KM(in Rs.)<span
+                                                <label class="col-sm-2 control-label">Price Per KM(in $)<span
                                                             style="color:red">*</span></label>
                                                 <div class="col-sm-4">
                                                     <input type="text" name="priceperKM" class=" form-control"
@@ -224,7 +224,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                 <div class="col-sm-4">
                                                     <select class="selectpicker" name="modelyear" required>
                                                         <option value=""> Select</option>
-                                                        <?php foreach (range(1990, 2018) as $year): ?>
+                                                        <?php foreach (range(1990, 2019) as $year): ?>
                                                             <option value="<?php echo htmlentities($year); ?>" <?php echo $result->ModelYear == $year ? "selected" : ""; ?> ><?php echo htmlentities($year); ?></option>
                                                         <?php endforeach; ?>
                                                     </select>

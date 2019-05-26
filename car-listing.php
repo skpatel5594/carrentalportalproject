@@ -112,8 +112,8 @@ error_reporting(0);
                                 <h5>
                                     <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->BrandName); ?>
                                         , <?php echo htmlentities($result->VehiclesTitle); ?></a></h5>
-                                <p class="list-price">₹<?php echo htmlentities($result->PricePerDay); ?> Per Day</p>
-                                <p class="list-price">₹<?php echo htmlentities($result->PricePerKM); ?> Per KM</p>
+                                <p class="list-price">$<?php echo htmlentities($result->PricePerDay); ?> Per Day</p>
+                                <p class="list-price">$<?php echo htmlentities($result->PricePerKM); ?> Per KM</p>
                                 <ul>
                                     <li><i class="fa fa-user"
                                            aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity); ?>
@@ -164,7 +164,7 @@ error_reporting(0);
                                     <option>Select Fuel Type</option>
                                     <option value="Petrol">Petrol</option>
                                     <option value="Diesel">Diesel</option>
-                                    <option value="CNG">CNG</option>
+                                    <option value="Electric">Electric</option>
                                 </select>
                             </div>
 
