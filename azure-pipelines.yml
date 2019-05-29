@@ -24,3 +24,10 @@ steps:
 
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
+  
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: '$(Parameters.ArtifactName)'
+  condition: succeededOrFailed()
